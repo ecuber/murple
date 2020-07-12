@@ -4,6 +4,7 @@ function renderHome(res) {
     document.getElementById("welcome").innerHTML = `Welcome, ${res.nickname ? res.nickname : res.name.split(" ")[0]}!`;
     // document.getElementById("icon").src = res.icon;
     document.getElementById("classhead").innerHTML = "Your classes";
+    document.getElementById("arch-notice").innerHTML = "Archived classes";
     loadCourses(res, "list");
     loadCourses(res, "archive", true);
 
