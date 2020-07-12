@@ -24,7 +24,7 @@ function onSignIn(googleUser) {
         "classroom.coursework.me.readonly",
         "classroom.announcements.readonly"].map(scope => `https://www.googleapis.com/auth/${scope}`);
     const test_scopes = ["email", "profile", "https://www.googleapis.com/auth/classroom.courses.readonly", "https://www.googleapis.com/auth/classroom.student-submissions.me.readonly", "https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.profile", "openid", "https://www.googleapis.com/auth/classroom.announcements.readonly"];
-    
+
     /**
      * Authorized is a boolean that will inform the srerver whether or not the application was 
      * authorized to access all of the scopes it requires. In the event that the user denies scope
@@ -109,6 +109,24 @@ async function init() {
                 renderButton();
             },
             err => console.error("Error loading GAPI client for API", err));
+}
+
+async function archive(uuid, course_id) {
+    await postData("http://localhost:3000/update", {
+        action: "archive_class",
+        uuid: uuid,
+        course_id: course_id
+    })
+        .then(res => {
+            if (res.code == 200) {
+                console.log(`Archived ${course_id} for ${uuid}`);
+                renderHome(res);
+
+            } else {
+                console.log(`Failed to archive ${course_id}`);
+            }
+        
+        });
 }
 
 /**
