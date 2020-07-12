@@ -1,0 +1,38 @@
+{
+    "ignorePatterns": "*.html",
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": "eslint:recommended",
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly",
+        "gapi": true,
+        "gapi.auth2": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "rules": {
+        "indent": [
+            "warn",
+            4
+        ],
+        "linebreak-style": [
+            "warn",
+            "unix"
+        ],
+        "quotes": [
+            "warn",
+            "double"
+        ],
+        "semi": [
+            "warn",
+            "always"
+        ],
+        "no-unused-vars": "off",
+        "no-undef": "off"
+    }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "murple",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ecuber/murple.git",
+  "author": "ecuber <37519236+ecuber@users.noreply.github.com>",
+  "license": "ISC",
+  "dependencies": {
+    "eslint": "^7.4.0"
+  }
+}
