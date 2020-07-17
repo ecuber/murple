@@ -1,2 +1,2 @@
-# murple
- a reimagined google classroom experience
+# murple server
+ 

@@ -1,38 +1,28 @@
 {
-    "ignorePatterns": "*.html",
     "env": {
-        "browser": true,
-        "es6": true
+        "es6": true,
+        "node": true
     },
-    "extends": "eslint:recommended",
+    "extends": [
+        "plugin:react/recommended",
+        "standard"
+    ],
     "globals": {
         "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly",
-        "gapi": true,
-        "gapi.auth2": true
+        "SharedArrayBuffer": "readonly"
     },
     "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
+    "plugins": [
+        "react"
+    ],
     "rules": {
-        "indent": [
-            "warn",
-            4
-        ],
-        "linebreak-style": [
-            "warn",
-            "unix"
-        ],
-        "quotes": [
-            "warn",
-            "double"
-        ],
-        "semi": [
-            "warn",
-            "always"
-        ],
         "no-unused-vars": "off",
-        "no-undef": "off"
+        "react/prop-types":["warn", {"ignore": ["children"]}]
     }
 }

@@ -1,11 +1,27 @@
 {
   "name": "murple",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/ecuber/murple.git",
-  "author": "ecuber <37519236+ecuber@users.noreply.github.com>",
-  "license": "ISC",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
   "dependencies": {
-    "eslint": "^7.4.0"
+    "googleapis": "^54.1.0",
+    "mongodb": "^3.5.9",
+    "next": "9.4.4",
+    "next-auth": "^2.2.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.4.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-standard": "^4.0.1"
   }
 }
