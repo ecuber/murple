@@ -8,12 +8,14 @@
     "start": "next start"
   },
   "dependencies": {
+    "bootstrap": "^4.5.0",
     "googleapis": "^54.1.0",
-    "mongodb": "^3.5.9",
+    "mongoose": "^5.9.25",
     "next": "9.4.4",
     "next-auth": "^2.2.0",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "reactstrap": "^8.5.1"
   },
   "devDependencies": {
     "eslint": "^7.4.0",

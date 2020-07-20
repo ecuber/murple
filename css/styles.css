@@ -1,10 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Chivo:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap');
 
 .brand-title {
-  font-family: Chivo, 'sans-serif';
-  font-size: 2.5em
+  font-family: -apple-system,BlinkMacSystemFont,Inter,sans-serif;
+  font-weight: 800;
+  font-size: 32px;
+  background: rgb(2,0,36);
+  background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(85,9,121,1) 11%, rgb(35, 160, 255) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
 }
 
 .nav-item {
-  font-size: 1.2em
+  font-size: 1.2em;
+  color: rgba(2,0,36,1);
+}
+
+body, html {
+  font-family: -apple-system,BlinkMacSystemFont,Inter,sans-serif;
+  font-weight: 400;
+  color: rgba(2,0,36,1);
+}
+
+.class-tile {
+  
 }

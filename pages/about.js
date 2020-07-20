@@ -3,7 +3,7 @@ import Layout from '../components/Layout'
 
 export default function about () {
   return (
-    <Layout>
+    <Layout page='about'>
       <div className="container">
         <blockquote className="blockquote">a reimagined google classroom experience</blockquote>
       </div>
