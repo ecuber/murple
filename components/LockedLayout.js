@@ -15,18 +15,16 @@ function LockedLayout (props) {
         <link rel="stylesheet" href="https://bootswatch.com/4/pulse/bootstrap.min.css"/>
       </Head>
       <Navbar page={props.page}/>
-      <div className="container">
+      <div className="">
         <Content>
           {!session && <>
-            <h3>Not signed in </h3><br/>
+            <h3>You must be logged in to view this page. </h3><br/>
             <a href="/api/auth/signin">Sign in</a>
           </>}
           {loading && <>
             <Loading/>
           </>}
           {session && <>
-            <h1>OASHFO:IAJFAD YOU ARE LOGGED ININININININININININ</h1>
-            <h1>{session.toString()}</h1>
             { props.children }
           </>}
         </Content>

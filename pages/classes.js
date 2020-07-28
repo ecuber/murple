@@ -4,36 +4,41 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Database from '../globals/db'
 import { google } from 'googleapis'
+import { Row, Col } from 'reactstrap'
 import ClassGrid from '../components/classes/ClassGrid'
 import ClassTile from '../components/classes/ClassTile'
 
 export default function classes (props) {
   const content = JSON.parse(props.content)
-  const courses = content ? content.data : null
+  const courses = content ? content.data.courses : null
   const keys = courses ? Object.keys(courses) : null
 
   return (
     <LockedLayout page='classes'>
-      <div className="container">
-        {keys
-          ? <ClassGrid>
-            {keys.map(course => {
-              console.log('course', course)
-              const obj = courses[course]
-              const key = keys.indexOf(course)
-              const name = obj.name
-              const code = obj.enrollmentCode
-              const archived = obj.archived
-              const pinned = obj.pinned
-              return (
-                <ClassTile key={key} name={name} code={code} archived={archived} pinned={pinned}/>
-              )
-            })}
-          </ClassGrid>
-          : null
-        }
-        {JSON.stringify(courses)}
-      </div>
+      <Row>
+        <Row className="col-md-7 col-sm-12 ml-4 mr-4 pr-4 class-list height-full">
+          <h4>My Classes</h4>
+          {keys
+            ? <ClassGrid>
+              {keys.map((course, index) => {
+                const obj = courses[course]
+                const name = obj.name
+                const code = obj.enrollmentCode
+                const archived = obj.archived
+                const pinned = obj.pinned
+                const id = obj.id
+                return (
+                  <span key={index} role="button"><ClassTile name={name} code={code} archived={archived} pinned={pinned} id={id}/></span>
+                )
+              })}
+            </ClassGrid>
+            : <h2>Couldn&apos;t find any classes. (try reloading?)</h2>
+          }
+        </Row>
+        <Row className="widgets col-md-4 ml-4 d-sm-none d-md-block height-full">
+          <h4>Widgets</h4>
+        </Row>
+      </Row>
     </LockedLayout>
   )
 }
@@ -49,6 +54,11 @@ export async function getServerSideProps (context) {
     if (!session) {
       return Promise.resolve(null)
     }
+    /*
+     * Evidently, we need to jump through some hoops here to get to our access and refresh token. This
+     * is because these are stored only in the account document, and in the scope of this function we only
+     * have access to the session document.
+     */
     const db = Database()
     const sessionId = await db.idFromSession(session)
     const _id = await sessionId.get('userId')
@@ -56,11 +66,14 @@ export async function getServerSideProps (context) {
     const accessObject = accessDoc.toObject()
     const { accessToken, refreshToken } = accessObject
 
+    // Create an oauth2client object with the application details
     const oauth2Client = new google.auth.OAuth2(
       process.env.GOOGLE_ID,
       process.env.GOOGLE_SECRET,
       process.env.GRANT_REDIRECT
     )
+
+    // "log in" to oauth2client with user credentials
     oauth2Client.setCredentials({ refresh_token: refreshToken, access_token: accessToken })
 
     const scopes = [

@@ -1,13 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Col } from 'reactstrap'
+import { Card, CardBody, CardTitle, CardSubtitle, Button, CardHeader } from 'reactstrap'
 
 function ClassTile (props) {
   return (
-    <Col className="class-tile">
-      <h3>{props.name}</h3>
-      <p>{props.code}</p>
-    </Col>
+    <Card className="class-tile m-0 p-0 rounded">
+      <CardHeader className="pt-3 pb-0">
+        <CardTitle>
+          <h5>{props.name}</h5>
+        </CardTitle>
+      </CardHeader>
+      <CardBody>
+        <CardSubtitle>Code: {props.code}</CardSubtitle>
+        <Button color="info" className="mt-2 align-baseline">More Info</Button>
+      </CardBody>
+    </Card>
   )
 }
 

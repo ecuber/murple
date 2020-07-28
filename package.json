@@ -8,13 +8,16 @@
     "start": "next start"
   },
   "dependencies": {
+    "array-move": "^3.0.0",
     "bootstrap": "^4.5.0",
     "googleapis": "^54.1.0",
     "mongoose": "^5.9.25",
     "next": "9.4.4",
     "next-auth": "^2.2.0",
     "react": "16.13.1",
+    "react-device-detect": "^1.13.1",
     "react-dom": "16.13.1",
+    "react-sortable-hoc": "^1.11.0",
     "reactstrap": "^8.5.1"
   },
   "devDependencies": {

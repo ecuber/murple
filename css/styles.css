@@ -24,6 +24,29 @@ body, html {
   color: rgba(2,0,36,1);
 }
 
-.class-tile {
-  
+ul.course {
+  list-style-type: none;
+  padding: 0;
+}
+
+li.helper {
+  cursor: -webkit-grabbing; cursor:-moz-grabbing !important;
+  list-style-type: none;
+  -webkit-box-shadow: 9px 9px 7px -5px rgba(0,0,0,0.13);
+  -moz-box-shadow: 9px 9px 7px -5px rgba(0,0,0,0.13);
+  box-shadow: 9px 9px 7px -5px rgba(0,0,0,0.13);
+}
+
+.height-full {
+  height: 85vh
+}
+
+.class-list {
+  overflow-y: auto;
+}
+
+h5 {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

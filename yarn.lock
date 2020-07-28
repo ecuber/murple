@@ -1396,6 +1396,11 @@ array-includes@^3.1.1:
     es-abstract "^1.17.0"
     is-string "^1.0.5"
 
+array-move@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/array-move/-/array-move-3.0.0.tgz#b646a2f4980be78f04d28d7572a72036150d364e"
+  integrity sha512-kqK1ZKiAVfIdfiJjC3zpAGPg3OEkjeeKuOILwS1b+oh34dI6GTg9szgRT+oKWw48RuVF8RGjlWCSYkn6NU+Jvw==
+
 array-unique@^0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/array-unique/-/array-unique-0.3.2.tgz#a894b75d4bc4f6cd679ef3244a9fd8f46ae2d428"
@@ -5482,7 +5487,7 @@ prop-types-exact@1.2.0:
     object.assign "^4.1.0"
     reflect.ownkeys "^0.2.0"
 
-prop-types@15.7.2, prop-types@^15.5.8, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@15.7.2, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -5591,6 +5596,13 @@ randomfill@^1.0.3:
     randombytes "^2.0.5"
     safe-buffer "^5.1.0"
 
+react-device-detect@^1.13.1:
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/react-device-detect/-/react-device-detect-1.13.1.tgz#27ac0e86a03969e440e973d179aaa19e80a5ba66"
+  integrity sha512-XTPgAMsUVHC5lMNUGiAeO2UfAfhMfjq0CBUM67eHnc9XfO7iESh6h/cffKV8VGgrZBX+dyuqJl23bLLHoav5Ig==
+  dependencies:
+    ua-parser-js "^0.7.21"
+
 react-dom@16.13.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.13.1.tgz#c1bd37331a0486c078ee54c4740720993b2e0e7f"
@@ -5628,6 +5640,15 @@ react-refresh@0.8.3:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.8.3.tgz#721d4657672d400c5e3c75d063c4a85fb2d5d68f"
   integrity sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
+
+react-sortable-hoc@^1.11.0:
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/react-sortable-hoc/-/react-sortable-hoc-1.11.0.tgz#fe4022362bbafc4b836f5104b9676608a40a278f"
+  integrity sha512-v1CDCvdfoR3zLGNp6qsBa4J1BWMEVH25+UKxF/RvQRh+mrB+emqtVHMgZ+WreUiKJoEaiwYoScaueIKhMVBHUg==
+  dependencies:
+    "@babel/runtime" "^7.2.0"
+    invariant "^2.2.4"
+    prop-types "^15.5.7"
 
 react-transition-group@^2.3.1:
   version "2.9.0"
@@ -6733,6 +6754,11 @@ typeorm@^0.2.24:
     xml2js "^0.4.17"
     yargonaut "^1.1.2"
     yargs "^13.2.1"
+
+ua-parser-js@^0.7.21:
+  version "0.7.21"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.21.tgz#853cf9ce93f642f67174273cc34565ae6f308777"
+  integrity sha512-+O8/qh/Qj8CgC6eYBVBykMrNtp5Gebn4dlGD/kKXVkJNDwyrAwSIqwz8CDf+tsAIWVycKcku6gIXJ0qwx/ZXaQ==
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"

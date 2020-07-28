@@ -57,7 +57,6 @@ const Database = () => {
         }
       }
       doc.markModified('data')
-      console.log(doc.data)
       return await doc.save()
     }
     console.error('bruh couldnt find it')

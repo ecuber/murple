@@ -1,7 +1,5 @@
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
-import { google } from 'googleapis'
-// import { oauth2 } from 'googleapis/build/src/apis/oauth2'
 import db from '../../../globals/db'
 
 const scopes = [
@@ -10,7 +8,7 @@ const scopes = [
   'classroom.announcements.readonly'].map(scope => `https://www.googleapis.com/auth/${scope}`)
 scopes.push('profile')
 
-const googleProvider = {
+const google = {
   id: 'google',
   name: 'Google',
   type: 'oauth',
@@ -37,68 +35,21 @@ const googleProvider = {
 }
 
 const options = {
-  site: 'http://localhost:3000',
+  site: process.env.SITE,
   providers: [
-    // Use custom Google provider to request additional OAuth2/API scopes from user.
-    googleProvider
+    google
   ],
   database: process.env.DATABASE_URL,
   jwt: true,
   callbacks: {
     /*
-     * Callback function, called once authorized. Uses refresh token to authorize a Google Classroom
-     * API request.
+     * NextAuth handles the majority of our session and account database interactions automatically.
+     * All we need to do here is verify that the account object passed to this callback contains
+     * a refresh token. If it does, then we successfully signed in!
      */
-    signin: async (profile, account, metadata) => {
-      const Database = db()
-      const { accessToken, refreshToken, id } = account
-      const obj = await Database.idFromProviderId(id)
-      const _id = obj.get('userId')
-
-      const oauth2Client = new google.auth.OAuth2(
-        process.env.GOOGLE_ID,
-        process.env.GOOGLE_SECRET,
-        process.env.GRANT_REDIRECT
-      )
-
-      const scopes = [
-        'classroom.courses.readonly',
-        'classroom.coursework.me.readonly',
-        'classroom.announcements.readonly'].map(scope => `https://www.googleapis.com/auth/${scope}`)
-
-      oauth2Client.setCredentials({ access_token: accessToken, refresh_token: refreshToken })
-
-      const classroom = google.classroom({ version: 'v1', auth: oauth2Client })
-      classroom.courses.list({ courseStates: ['ACTIVE'] }, (err, res) => {
-        if (err) {
-          console.error('request error: ', err)
-          return Promise.resolve(false)
-        }
-        const courses = res.data.courses
-
-        if (courses && courses.length) {
-          courses.forEach(course => {
-            course.archived = false
-            course.pinned = false
-            course.nickname = null
-          })
-          Database.updateArray(_id, 'user', 'courses', courses)
-        } else {
-          console.log('No courses found.')
-        }
-      })
-      return Promise.resolve(true)
-    }
-  },
-  // TODO: Add custom sign-in/out pages
-  events: {
-    signin: async (message) => {
-      // console.log(message)
-    },
-    signout: async (message) => {
-      // console.log('message', message)
-    }
+    signin: async (profile, account, metadata) => Promise.resolve(account.refreshToken !== undefined)
   }
+  // TODO: Add custom sign-in/out pages
 }
 
 export default (req, res) => NextAuth(req, res, options)

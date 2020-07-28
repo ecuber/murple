@@ -1,22 +1,41 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { chunk } from 'lodash'
-import { Container, Row, Col } from 'reactstrap'
+import { Container, Row } from 'reactstrap'
+import { sortableContainer, SortableElement } from 'react-sortable-hoc'
+import { isMobile } from 'react-device-detect'
+import arrayMove from 'array-move'
 
-function ClassGrid (props) {
-  const rows = chunk(React.Children.toArray(props.children), 4)
-  return (
-    <Container className="class-grid">
-      {rows.map(row => (
-        <Row key={rows.indexOf(row)}>
-          {row.map(col => (col))}
+const SortableItem = SortableElement(({ value }) => <li className="col-md-4 mt-3 pr-0 pl-3">{value}</li>)
+
+const SortableContainer = sortableContainer(({ children }) => {
+  return <ul className="course">{children}</ul>
+})
+
+class ClassGrid extends Component {
+  constructor (props) {
+    super()
+    this.state = { items: React.Children.toArray(props.children) }
+    this.onSortEnd = ({ oldIndex, newIndex }) => {
+      this.setState(({ items }) => {
+        return ({
+          items: arrayMove(items, oldIndex, newIndex)
+        })
+      })
+    }
+  }
+
+  render () {
+    const cards = this.state.items
+    return (
+      <SortableContainer helperClass="helper" axis="xy" distance={isMobile ? null : 8} pressDelay={isMobile ? 200 : null} onSortEnd={this.onSortEnd}>
+        <Row>
+          {cards.map((card, index) => <SortableItem key={`item-${index}`} index={index} value={card} />)}
         </Row>
-      ))}
-    </Container>
-  )
+      </SortableContainer>
+    )
+  }
 }
 
-ClassGrid.propTypes = {
-
-}
+ClassGrid.propTypes = {}
 
 export default ClassGrid
