@@ -16,8 +16,8 @@ export default function classes (props) {
   return (
     <LockedLayout page='classes'>
       <Row>
-        <div className="col-md-7 ml-4 class-head"><h4>My Classes</h4></div>
-        <div className="col-md-4 ml-4 d-sm-none d-md-block"><h4>Widgets</h4></div>
+        <div className="col-md-7 col-sm-8 ml-4 class-head"><h4>My Classes</h4></div>
+        <div className="col-md-4 col-sm-3 ml-4 d-none d-sm-none d-md-block"><h4>Widgets</h4></div>
       </Row>
       <Row>
         <Row className="col-md-7 ml-4 mr-4 pr-4 class-list height-full">
@@ -38,7 +38,7 @@ export default function classes (props) {
             : <h2>Couldn&apos;t find any classes. (try reloading?)</h2>
           }
         </Row>
-        <Row className="widgets col-md-4 ml-4 d-sm-none d-xs-none d-md-block height-full">
+        <Row className="widgets col-md-4 ml-4 d-none d-sm-none d-md-block height-full">
         </Row>
       </Row>
     </LockedLayout>

@@ -5,7 +5,7 @@ import { sortableContainer, SortableElement } from 'react-sortable-hoc'
 import { isMobile } from 'react-device-detect'
 import arrayMove from 'array-move'
 
-const SortableItem = SortableElement(({ value }) => <li className="col-lg-4 col-md-6 col-sm-12 mt-3 pr-0 pl-3">{value}</li>)
+const SortableItem = SortableElement(({ value }) => <li className="col-lg-4 col-md-6 col-sm-6 mt-3 pr-0 pl-3">{value}</li>)
 
 const SortableContainer = sortableContainer(({ children }) => {
   return <ul className="course">{children}</ul>

@@ -15,7 +15,7 @@ function LockedLayout (props) {
         <link rel="stylesheet" href="https://bootswatch.com/4/pulse/bootstrap.min.css"/>
       </Head>
       <Navbar page={props.page}/>
-      <div className="">
+      <section className="h-100">
         <Content>
           {!session && <>
             <h3>You must be logged in to view this page. </h3><br/>
@@ -28,7 +28,7 @@ function LockedLayout (props) {
             { props.children }
           </>}
         </Content>
-      </div>
+      </section>
     </div>
   )
 }
