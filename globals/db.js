@@ -28,16 +28,77 @@ const Database = () => {
     session: Session
   }
 
+  /**
+   * Returns an object by its _id. Defaults to user collection.
+   * @param {string} id - _id of desired object
+   * @param {string} model - Desired collection (e.g. account, user, session)
+   * @param {string} options - Search options
+   */
   async function findObject (id, model = 'user', options = '') {
     const document = await models[model].findById(id, options)
     return document
   }
 
+  /**
+   * Returns object associated with a given user id. Defaults to account collection.
+   * @param {string} id - User ID
+   * @param {string} model - Desired collection (e.g. account, user, session)
+   * @param {string} options - Search options
+   */
   async function findObjectByUserId (id, model = 'account', options = '') {
     const document = await models[model].findOne({ userId: id }, options)
     return document
   }
 
+  /**
+   * Sets the value of a given property to a new value. Defaults to User collection.
+   * @param {string} id - Object ID
+   * @param {string} key - Propery name
+   * @param {Object} value - New value
+   * @param {string} model - Desired collection (e.g. account, user, session)
+   */
+  async function updateProperty (id, key, value, model = 'user') {
+    const doc = await findObject(id, model)
+    if (doc) {
+      if (!doc[key]) {
+        doc[key] = null
+      }
+      doc[key] = value
+      doc.markModified(key)
+      return await doc.save()
+    }
+    console.error('bruh couldnt find that object')
+  }
+
+  /**
+   * For updating individual courses in the course array.
+   * @param {string} id - Object ID
+   * @param {string} key - Object property to search
+   * @param {Object} value - New values to update the array element
+   * @param {string} courseId - ID of target course object
+   * @param {string} subKey - Property where the array itself is
+   * @param {string} model - Desired collection (e.g. account, user, session)
+   */
+  async function updateCourse (id, key, value, courseId, subKey = 'courses', model = 'user') {
+    const doc = findObject(id, model)
+    if (doc && doc[key] && doc[key][subKey] && Array.isArray(doc[key][subKey])) {
+      const target = doc[key][subKey].indexOf(doc[key].find(elem => elem.id === courseId))
+      Object.keys(value).forEach(key => {
+        target[key] = value[key]
+      })
+      doc.markModified(key)
+      return await doc.save()
+    }
+  }
+
+  /**
+   * Sets the value of an array with a given uuid, model, key, and new array contents. Only adds items
+   * with unique ID properties (not already found in array) to the existing array.
+   * @param {*} id - Object ID
+   * @param {*} model - Desired collection (e.g. account, user, session)
+   * @param {*} key - Object property name
+   * @param {*} array - Array to set property value to
+   */
   async function updateArray (id, model, key, array) {
     const doc = await findObject(id, model)
     if (doc) {
@@ -59,7 +120,7 @@ const Database = () => {
       doc.markModified('data')
       return await doc.save()
     }
-    console.error('bruh couldnt find it')
+    console.error('bruh couldnt find that object')
   }
 
   /**
@@ -96,12 +157,14 @@ const Database = () => {
   }
 
   return {
-    idFromSession: idFromSession,
-    idFromProviderId: idFromProviderId,
-    findObject: findObject,
-    findObjectByUserId: findObjectByUserId,
-    updateArray: updateArray,
-    close: close
+    idFromSession,
+    idFromProviderId,
+    findObject,
+    findObjectByUserId,
+    updateArray,
+    close,
+    update: updateProperty,
+    updateCourse
   }
 }
 

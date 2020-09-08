@@ -30,7 +30,7 @@ ul.course {
 }
 
 li.helper {
-  cursor: -webkit-grabbing; cursor:-moz-grabbing !important;
+  cursor: grabbing -webkit-grabbing -moz-grabbing !important;
   list-style-type: none;
   -webkit-box-shadow: 9px 9px 7px -5px rgba(0,0,0,0.13);
   -moz-box-shadow: 9px 9px 7px -5px rgba(0,0,0,0.13);
@@ -49,4 +49,16 @@ h5 {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.class-tile {
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+  cursor: pointer
+}
+
+.class-tile:active {
+  cursor: pointer
 }
