@@ -35,20 +35,10 @@ const google = {
 }
 
 const options = {
-  site: process.env.NEXTAUTH_URL,
   providers: [
     google
   ],
-  database: process.env.DATABASE_URL,
-  jwt: true,
-  callbacks: {
-    /*
-     * NextAuth handles the majority of our session and account database interactions automatically.
-     * All we need to do here is verify that the account object passed to this callback contains
-     * a refresh token. If it does, then we successfully signed in!
-     */
-    signin: async (profile, account, metadata) => Promise.resolve(account.refreshToken !== undefined)
-  }
+  database: process.env.DATABASE_URL
   // TODO: Add custom sign-in/out pages
 }
 
