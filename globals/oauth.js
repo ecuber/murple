@@ -13,7 +13,7 @@ export default async function createAuthClient (session) {
   const oauth2Client = new google.auth.OAuth2(
     process.env.GOOGLE_ID,
     process.env.GOOGLE_SECRET,
-    process.env.GRANT_REDIRECT
+    `${process.env.NEXTAUTH_URL}${process.env.GRANT_REDIRECT}`
   )
   // "log in" to oauth2client with user credentials
   oauth2Client.setCredentials({ refresh_token: refreshToken, access_token: accessToken })
