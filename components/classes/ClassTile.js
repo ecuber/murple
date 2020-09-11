@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import EditCourse from './EditCourse'
 import { Card, CardBody, CardTitle, CardSubtitle, Button, CardHeader } from 'reactstrap'
 
 function ClassTile (props) {
@@ -11,8 +12,7 @@ function ClassTile (props) {
         </CardTitle>
       </CardHeader>
       <CardBody>
-        <CardSubtitle>Code: {props.code}</CardSubtitle>
-        <Button color="info" className="mt-2 align-baseline">More Info</Button>
+        <EditCourse className="btn btn-info mt-2 align-baseline" style={{ background: props.color, color: 'white' }} buttonLabel="Edit" color={props.color} classInfo={props} _id={props._id}/>
       </CardBody>
     </Card>
   )
@@ -22,7 +22,9 @@ ClassTile.propTypes = {
   name: PropTypes.string,
   code: PropTypes.string,
   archived: PropTypes.bool,
-  pinned: PropTypes.bool
+  pinned: PropTypes.bool,
+  color: PropTypes.string,
+  _id: PropTypes.string
 }
 
 export default ClassTile

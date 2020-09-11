@@ -12,6 +12,7 @@
     "array-move": "^3.0.0",
     "bootstrap": "^4.5.0",
     "googleapis": "^54.1.0",
+    "isomorphic-unfetch": "^3.0.0",
     "mongoose": "^5.9.25",
     "next": "9.4.4",
     "next-auth": "^2.2.0",

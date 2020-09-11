@@ -80,15 +80,31 @@ const Database = () => {
    * @param {string} model - Desired collection (e.g. account, user, session)
    */
   async function updateCourse (id, key, value, courseId, subKey = 'courses', model = 'user') {
-    const doc = findObject(id, model)
-    if (doc && doc[key] && doc[key][subKey] && Array.isArray(doc[key][subKey])) {
-      const target = doc[key][subKey].indexOf(doc[key].find(elem => elem.id === courseId))
-      Object.keys(value).forEach(key => {
-        target[key] = value[key]
+    const doc = await findObject(id, model)
+    if (doc) {
+      const target = doc[key][subKey].indexOf(doc[key][subKey].find(elem => elem.id === courseId))
+      const course = doc[key][subKey][target]
+      Object.keys(value).forEach(prop => {
+        course[prop] = value[prop]
       })
       doc.markModified(key)
       return await doc.save()
     }
+  }
+
+  /**
+   * Moves a course from its current position in the array to a new position.
+   * @param {string} id - Object ID
+   * @param {*} old - Current index of course in array
+   * @param {*} final Desired final index of course in the array
+   */
+  async function reorderCourse (id, old, final) {
+    const doc = await findObject(id, 'user')
+    const courses = doc.data.courses
+    const target = courses.splice(old, 1)
+    courses.splice(final, 0, target[0])
+    doc.markModified('data')
+    return await doc.save()
   }
 
   /**
@@ -157,6 +173,7 @@ const Database = () => {
   }
 
   return {
+    connection: db,
     idFromSession,
     idFromProviderId,
     findObject,
@@ -164,7 +181,8 @@ const Database = () => {
     updateArray,
     close,
     update: updateProperty,
-    updateCourse
+    updateCourse,
+    reorderCourse
   }
 }
 

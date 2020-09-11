@@ -7,7 +7,7 @@ export default function Home ({ Component, pageProps }) {
   return (
     <Provider
       options={{
-        site: 'http://localhost:3000',
+        site: process.env.NODE_ENV === 'production' ? 'https://murple.co' : 'http://localhost:3000',
         clientMaxAge: 0,
         keepAlive: 0
       }}

@@ -8,17 +8,11 @@ import LockedLayout from '../components/LockedLayout'
 import ClassGrid from '../components/classes/ClassGrid'
 import ClassTile from '../components/classes/ClassTile'
 import createAuthClient from '../globals/oauth'
-import Database from '../globals/db'
 
 export default function classes (props) {
   const content = JSON.parse(props.content)
   const courses = content ? content.data.courses : null
   const keys = courses ? Object.keys(courses) : null
-
-  async function update (id, value) {
-    const db = new Database()
-    return await db.updateCourse(props._id, 'data', value, id)
-  }
 
   return (
     <LockedLayout page='classes'>
@@ -29,11 +23,11 @@ export default function classes (props) {
       <Row>
         <Row className="ml-4 mr-4 pr-4 class-list height-full">
           {keys
-            ? <ClassGrid>
+            ? <ClassGrid _id={props._id}>
               {keys.map((course, index) => {
-                const { name, archived, pinned, id, color } = courses[course]
+                const { name, archived, pinned, id, color, original } = courses[course]
                 return (
-                  <span key={index} role="button"><ClassTile name={name} archived={archived} pinned={pinned} id={id} color={color || '#38618c'} update={update}/></span>
+                  <span key={index} role="button"><ClassTile name={name} archived={archived} pinned={pinned} id={id} color={color || '#38618c'} _id={props._id} original={original}/></span>
                 )
               })}
             </ClassGrid>
@@ -77,6 +71,7 @@ export async function getServerSideProps (context) {
           return {
             id: course.id,
             name: course.name,
+            original: course.name,
             archived: false,
             pinned: false,
             nickname: null
@@ -86,7 +81,8 @@ export async function getServerSideProps (context) {
         console.log('No courses found.')
       }
     })
-    return Promise.resolve(db.findObject(_id, 'user', 'data'))
+    const content = await db.findObject(_id, 'user', 'data')
+    return Promise.resolve(content)
   }
-  return { props: { content: JSON.stringify(data), _id: JSON.stringify(id) } }
+  return { props: { content: JSON.stringify(data), _id: id.toString() } }
 }
