@@ -15,10 +15,7 @@ const options = {
       clientSecret: process.env.GOOGLE_SECRET,
       scope: scopes.join(' '),
       authorizationUrl: 'https://accounts.google.com/o/oauth2/v2/auth?response_type=code'
-    }),
-    Providers.GitHub({
-      clientId: '27513df9d61344322a92',
-      clientSecret: '17c0bee61b1296186e171a7eafc3e711a7fb5e4d'
+
     })
   ],
   database: process.env.DATABASE_URL
