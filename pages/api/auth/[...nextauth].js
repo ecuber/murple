@@ -35,7 +35,6 @@ const google = {
 }
 
 const options = {
-  site: process.env.NEXTAUTH_URL,
   providers: [
     google
   ],
