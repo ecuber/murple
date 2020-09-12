@@ -18,7 +18,8 @@ const options = {
 
     })
   ],
-  database: process.env.DATABASE_URL
+  database: process.env.DATABASE_URL,
+  debug: true
   // TODO: Add custom sign-in/out pages
 }
 
