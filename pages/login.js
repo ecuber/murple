@@ -5,7 +5,7 @@ import Layout from '../components/Layout'
 export default function login () {
   return (
     <Layout>
-      <div className="container">
+      <div className='container'>
       </div>
     </Layout>
   )

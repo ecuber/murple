@@ -7,10 +7,10 @@ import { isMobile } from 'react-device-detect'
 import arrayMove from 'array-move'
 import fetch from 'isomorphic-unfetch'
 
-const SortableItem = SortableElement(({ value }) => <li className="col-lg-4 col-md-6 col-sm-6 mt-3 pr-0 pl-3">{value}</li>)
+const SortableItem = SortableElement(({ value }) => <li className='col-lg-4 col-md-6 col-sm-6 mt-3 pr-0 pl-3'>{value}</li>)
 
 const SortableContainer = sortableContainer(({ children }) => {
-  return <ul className="course">{children}</ul>
+  return <ul className='course'>{children}</ul>
 })
 
 class ClassGrid extends Component {
@@ -36,14 +36,13 @@ class ClassGrid extends Component {
           new: newIndex
         })
       })
-      console.log(res)
     }
   }
 
   render () {
     const cards = this.state.items
     return (
-      <SortableContainer helperClass="helper" axis="xy" distance={isMobile ? null : 8} pressDelay={isMobile ? 200 : null} onSortEnd={this.onSortEnd}>
+      <SortableContainer helperClass='helper' axis='xy' distance={isMobile ? null : 8} pressDelay={isMobile ? 200 : null} onSortEnd={this.onSortEnd}>
         <Row>
           {cards.map((card, index) => <SortableItem key={`item-${index}`} index={index} value={card} />)}
         </Row>

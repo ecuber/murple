@@ -13,11 +13,10 @@ async function reorder (_id, prev, final) {
 export default async (req, res) => {
   const data = req.body
   let success = null
-
   if (data.type === 'course') {
     success = await updateCourse(data._id, data.id, data.obj)
   } else if (data.type === 'reorder') {
-    success = reorder(data._id, data.old, data.new)
+    success = await reorder(data._id, data.old, data.new)
   }
 
   if (success) {

@@ -12,14 +12,14 @@ function LockedLayout (props) {
     <div>
       <Head>
         <title>Murple</title>
-        <link rel="stylesheet" href="https://bootswatch.com/4/pulse/bootstrap.min.css"/>
+        <link rel='stylesheet' href='https://bootswatch.com/4/pulse/bootstrap.min.css'/>
       </Head>
       <Navbar page={props.page}/>
-      <section className="h-100">
+      <section className='h-100'>
         <Content>
           {!session && <>
             <h3>You must be logged in to view this page. </h3><br/>
-            <a href="/api/auth/signin">Sign in</a>
+            <a href='/api/auth/signin'>Sign in</a>
           </>}
           {loading && <>
             <Loading/>

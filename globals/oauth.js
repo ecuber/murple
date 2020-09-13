@@ -15,7 +15,7 @@ export default async function createAuthClient (session) {
     process.env.GOOGLE_SECRET,
     process.env.GRANT_REDIRECT
   )
-  // "log in" to oauth2client with user credentials
+  // 'log in' to oauth2client with user credentials
   oauth2Client.setCredentials({ refresh_token: refreshToken, access_token: accessToken })
 
   return { oauth2Client, db, _id }

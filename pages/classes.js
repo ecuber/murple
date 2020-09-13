@@ -2,7 +2,7 @@ import { getSession, signin } from 'next-auth/client'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { google } from 'googleapis'
-import { Row, Col } from 'reactstrap'
+import { Row, Col, Button } from 'reactstrap'
 
 import LockedLayout from '../components/LockedLayout'
 import ClassGrid from '../components/classes/ClassGrid'
@@ -17,25 +17,27 @@ export default function classes (props) {
   return (
     <LockedLayout page='classes'>
       <Row>
-        <div className="ml-4 class-head"><h4>My Classes</h4></div>
-        {/* <div className="col-md-4 col-sm-3 ml-4 d-none d-sm-none d-md-block"><h4>Widgets</h4></div> */}
+        <div className='ml-4 class-head'><h4>My Classes</h4></div>
+        {/* <div className='col-md-4 col-sm-3 ml-4 d-none d-sm-none d-md-block'><h4>Widgets</h4></div> */}
       </Row>
       <Row>
-        <Row className="ml-4 mr-4 pr-4 class-list height-full">
+        <Row className='ml-4 mr-4 pr-4 class-list height-full'>
           {keys
             ? <ClassGrid _id={props._id}>
               {keys.map((course, index) => {
                 const { name, archived, pinned, id, color, original } = courses[course]
                 return (
-                  <span key={index} role="button"><ClassTile name={name} archived={archived} pinned={pinned} id={id} color={color || '#38618c'} _id={props._id} original={original}/></span>
+                  <span key={index} role='button'><ClassTile name={name} archived={archived} pinned={pinned} id={id} color={color || '#673ab7'} _id={props._id} original={original}/></span>
                 )
               })}
             </ClassGrid>
-            : <h2>Couldn&apos;t find any classes. (try reloading?)</h2>
+            : <div>
+              <h2>Couldn&apos;t find any classes. (try reloading?)</h2>
+            </div>
           }
         </Row>
         {/* Widgets area coming soon ? */}
-        {/* <Row className="widgets col-md-4 ml-4 d-none d-sm-none d-md-block height-full"></Row> */}
+        {/* <Row className='widgets col-md-4 ml-4 d-none d-sm-none d-md-block height-full'></Row> */}
       </Row>
     </LockedLayout>
   )

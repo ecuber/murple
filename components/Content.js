@@ -5,10 +5,10 @@ function Content (props) {
   const [session, loading] = useSession()
   return (
     <div>
-      <div className="">
+      <div className=''>
         { !loading && !session && <>
           <h3>You can&apos;t view this page because you&apos;re not signed in. </h3><br/>
-          <a href="/api/auth/signin">Sign in here.</a>
+          <a href='/api/auth/signin'>Sign in here.</a>
         </>}
         {session && <>
           { props.children }

@@ -11,14 +11,14 @@ export default function Home () {
       <Layout page='home'>
         {!loading && !session && <>
           <h3>Not signed in </h3><br/>
-          <a href="/api/auth/signin">Sign in</a>
+          <a href='/api/auth/signin'>Sign in</a>
         </>}
         {loading && <>
           <Loading/>
         </>}
         {session && <>
           <h3>Welcome, {session.user.name.split(' ')[0]}!</h3> <br/>
-          <a href="/api/auth/signout">Sign out</a>
+          <a href='/api/auth/signout'>Sign out</a>
         </>}
 
       </Layout>

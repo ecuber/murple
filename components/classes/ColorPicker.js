@@ -1,24 +1,26 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { BlockPicker } from 'react-color'
+import { CirclePicker } from 'react-color'
 
 class Picker extends Component {
-  constructor () {
+  constructor (props) {
     super()
-    this.setState({ background: '#fff' })
-  }
-
-  handleChangeComplete = (color) => {
-    this.setState({ background: color.hex });
+    this.state = {
+      color: props.initial || '#fff'
+    }
   }
 
   render () {
-    return <BlockPicker/>
+    return <CirclePicker color={this.state.color} onChange={async (color, event) => {
+      await this.props.update(color.hex)
+      this.setState({ color: color.hex })
+    }}/>
   }
 }
 
 Picker.propTypes = {
-  initial: PropTypes.string
+  initial: PropTypes.string,
+  update: PropTypes.func
 }
 
 export default Picker

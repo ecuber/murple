@@ -8,10 +8,10 @@ function Layout (props) {
     <div>
       <Head>
         <title>Murple</title>
-        <link rel="stylesheet" href="https://bootswatch.com/4/pulse/bootstrap.min.css"/>
+        <link rel='stylesheet' href='https://bootswatch.com/4/pulse/bootstrap.min.css'/>
       </Head>
       <Navbar page={props.page}/>
-      <div className="container">
+      <div className='container'>
         { props.children }
       </div>
     </div>
