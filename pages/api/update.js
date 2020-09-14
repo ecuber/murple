@@ -1,11 +1,11 @@
 import Database from '../../globals/db'
 
-async function updateCourse (_id, id, value) {
+export async function updateCourse (_id, id, value) {
   const db = Database()
   return await db.updateCourse(_id, 'data', value, id)
 }
 
-async function reorder (_id, prev, final) {
+export async function reorder (_id, prev, final) {
   const db = Database()
   return await db.reorderCourse(_id, prev, final)
 }
