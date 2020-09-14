@@ -5,7 +5,6 @@ import { isEqual } from 'lodash'
 import fetch from 'isomorphic-unfetch'
 import Router from 'next/router'
 import { Circle } from 'react-shapes'
-import '@fortawesome/fontawesome-free/js/all'
 
 import Database from '../../globals/db'
 import ColorPicker from './ColorPicker'
@@ -56,10 +55,7 @@ class EditCourse extends Component {
     return (
       <div>
         <button style={{ border: 'none', background: 'rgba(0, 0, 0, 0)', float: 'right' }} onClick={this.toggle}>
-          <i style={{
-            color: 'white',
-            fontSize: '1.2em'
-          }} className='fas fa-ellipsis-v'/>
+          <i className='fas fa-ellipsis-v edit'/>
         </button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className='modal-dialog-centered'>
           <ModalHeader toggle={this.toggle}>Modify Course</ModalHeader>

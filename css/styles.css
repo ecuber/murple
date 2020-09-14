@@ -62,3 +62,20 @@ h5 {
 .class-tile:active {
   cursor: pointer
 }
+
+.edit {
+  color: white;
+  font-size: 1.2em;
+  display: initial;
+}
+
+.edit:hover {
+  transform: scale(1.2) perspective(1px) translateZ(0);
+  transition: transform ease-in-out .15s;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+h3.warning {
+  margin: auto;
+}
