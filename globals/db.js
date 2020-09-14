@@ -1,6 +1,12 @@
 import mongoose from 'mongoose'
 
+let cache = null
+
 const Database = () => {
+  if (cache) {
+    // console.log('=> using cache')
+    return cache
+  }
   const accountSchema = new mongoose.Schema({
   }, { strict: false, minimize: false })
 
@@ -129,7 +135,7 @@ const Database = () => {
       if (Array.isArray(doc.data[key])) {
         for (let i = 0; i < array.length; i++) {
           if (!doc.data[key].filter(obj => obj.id === array[i].id).length > 0) {
-            doc.data[key].push(array[i])
+            doc.data[key].unshift(array[i])
           }
         }
       }
@@ -172,7 +178,7 @@ const Database = () => {
     return db.close()
   }
 
-  return {
+  cache = {
     connection: db,
     idFromSession,
     idFromProviderId,
@@ -184,6 +190,8 @@ const Database = () => {
     updateCourse,
     reorderCourse
   }
+  // console.log('=> created new db instance')
+  return cache
 }
 
 export default Database
