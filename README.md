@@ -1,6 +1,11 @@
 # Murple
 A *✨reimagined ✨* Google Classroom experience.
 
+# THIS PROJECT IS NOW ARCHIVED
+Murple was a project I worked on extensively the summer of 2020 during my long days in quarantine. I had a big plan for what would ultimately be a Google Classroom companion application, but when I finally got caught up in my own schoolwork, I found that it probably wouldn't be as useful as I had initially expected.
+
+Below are all of initial plans for the project and the ideas behind the design. This readme was much more a checklist/design document for me than anything. The project has since been abandoned.
+
 # Context
 
 School closures and distance learning have presented students with a slew of new challenges related to school. Besides desperately trying to stay motivated to complete schoolwork and dealing with the difficulty of social isolation, students must keep track of assignments, follow their changing virtual class schedules, and interact with multiple learning platforms for each class. 
